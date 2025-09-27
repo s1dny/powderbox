@@ -1,5 +1,3 @@
-import sys
-
 import pygame
 
 from canvas import World, Dir
@@ -11,7 +9,7 @@ FONT = pygame.font.Font('font.ttf', 18)
 
 FPS = 60
 fpsClock = pygame.time.Clock()
-WINDOW = pygame.display.set_mode((768, 768))
+WINDOW = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption('powderbox')
 
 COLORS = [
@@ -27,13 +25,13 @@ COLORS = [
 paused_text = FONT.render("sim paused", False, (255, 255, 255))
 
 print("""
-controls
-- left click: add the selected block
-- right click: delete the selected block
-- mouse wheel: select different tiles
-- space: pause / unpause the simulation
-- ESC: reset the canvas
-    """)
+Controls
+- Left click: Add the selected block
+- Right click: Delete the selected block
+- Mouse wheel: Select different tiles
+- Space: Pause / unpause the simulation
+- ESC: Reset the canvas
+""")
  
 def render(world, selected_tile, mouse_position , paused, tiles_info):
     pygame.display.set_caption(f'powderbox {int(fpsClock.get_fps())} FPS')

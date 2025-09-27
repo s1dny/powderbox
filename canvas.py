@@ -30,14 +30,7 @@ class NextPosition:
 
 class Tile:
 
-    def __init__(
-            self,
-            color,
-            density,
-            world: "World",
-            x,
-            y
-    ):
+    def __init__(self, color, density, world: "World", x, y):
         self.color = color
         self.density = density
         self.x = x
@@ -78,10 +71,7 @@ class Tile:
         if not checked_tile:
             return None
         return checked_tile
-
-    def transform(self, new_type: type):
-        return None
-
+    
 class MovingTile(Tile):
 
     def __init__(self, color, density, world: "World", x, y):
@@ -97,7 +87,7 @@ class MovingTile(Tile):
         super().delete()
         self.world.moving_tiles.remove(self)
 
-    def move(self, new_x, new_y, replacement_tile: "Tile" or None):
+    def move(self, new_x, new_y, replacement_tile: "Tile | None"):
         self.world.spatial_matrix[self.y][self.x] = replacement_tile
         self.x = new_x
         self.y = new_y
@@ -197,12 +187,16 @@ class World:
         self.update_count = 0
 
     def add_tile(self, tile_type, x, y):
+        if not (0 <= x < self.width and 0 <= y < self.height):
+            return None
         new_tile: Tile = tile_type(self, x, y)
         if not self.spatial_matrix[y][x]:
             new_tile.add()
         return new_tile
 
     def delete_tile(self, x, y):
+        if not (0 <= x < self.width and 0 <= y < self.height):
+            return None
         tile = self.spatial_matrix[y][x]
         if tile:
             tile.remove()

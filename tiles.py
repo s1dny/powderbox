@@ -110,7 +110,7 @@ class AcidTile(LiquidTile, CustomTile):
         if random.randrange(0, 16) != 0:
             return
         for direction in Dir.ALL:
-            tile: Tile = self.get_neighbour_tile(direction)
+            tile: Tile | None = self.get_neighbour_tile(direction)
             if tile and (type(tile) != AcidTile):
                 tile.remove()
                 self.remove()
