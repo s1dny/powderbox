@@ -13,4 +13,9 @@
 - `space` : pause / unpause the simulation
 - `ESC` : reset the canvas
 
+## Usage
+```bash
+python main.py
+```
+
 ![](src/img2.png)
